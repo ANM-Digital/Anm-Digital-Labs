@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.next/
+out/
+
+# Firebase
+.firebase/
+firebase-debug.log*
+firebase-debug.*.log
+ui-debug.log*
+firestore-debug.log*
+database-debug.log*
+
+# Environment files — never commit secrets
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# Service account & private keys
+*service-account*.json
+*serviceAccount*.json
+service_account*.json
+*-private-key.json
+*-credentials.json
+*.pem
+*.p12
+*.key
+
+# API credentials
+google-credentials.json
+gcp-credentials.json
+credentials.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Agents (internal tooling — not part of the app)
+.agents/

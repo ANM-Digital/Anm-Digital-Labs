@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react";\n\n// App Hosting compatibility wrapper for the existing application entry point.
 
 export function BrowserRouter({children}:{children:React.ReactNode}){return <>{children}</>}
 

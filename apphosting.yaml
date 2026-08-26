@@ -7,6 +7,11 @@ runConfig:
   # cpu: 1
   # memoryMiB: 512
 
+scripts:
+  buildCommand: npm run build
+  runCommand: npm run start
+
+
 # Environment variables and secrets.
 # env:
   # Configure environment variables.

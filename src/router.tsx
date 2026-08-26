@@ -1,6 +1,9 @@
-import React from "react";\n\n// App Hosting compatibility wrapper for the existing application entry point.
+import React from "react";
 
-export function BrowserRouter({children}:{children:React.ReactNode}){return <>{children}</>}
+// App Hosting compatibility wrapper for the existing application entry point.
+export function BrowserRouter({children}:{children:React.ReactNode}){
+  return <>{children}</>
+}
 
 export function Link({to,className,children,onClick}:{to:string,className?:string,children:React.ReactNode,onClick?:()=>void}){
   return <a href={to} className={className} onClick={onClick}>{children}</a>

@@ -1,1 +1,175 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#100A2E"/><meta name="description" content="ANM Digital creates software, SaaS products, mobile apps, AI agents, websites and connected digital systems."/><link rel="icon" href="/favicon.svg"/><title>ANM Digital — Digital Products & AI</title></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#100A2E" />
+    <meta
+      name="description"
+      content="ANM Digital creates software, SaaS products, mobile apps, AI agents, websites and connected digital systems."
+    />
+    <link rel="icon" href="/favicon.svg" />
+    <title>ANM Digital — Digital Products & AI</title>
+
+    <!-- ======================================================
+         ANM DIGITAL — GOOGLE CONSENT MODE v2 + GTM
+         Domain: anmdigital.online
+         GTM Container: GTM-T346BN49
+    ======================================================= -->
+    <script>
+      (function () {
+        "use strict";
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () {
+          window.dataLayer.push(arguments);
+        };
+
+        var CONSENT_STORAGE_KEY = "anm_google_consent_v2";
+
+        var DEFAULT_CONSENT = {
+          ad_storage: "denied",
+          analytics_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+          personalization_storage: "denied",
+          functionality_storage: "granted",
+          security_storage: "granted"
+        };
+
+        function normalizeConsentValue(value, fallback) {
+          if (value === "granted" || value === "denied") {
+            return value;
+          }
+          return fallback;
+        }
+
+        function normalizeConsent(consent) {
+          consent = consent || {};
+          return {
+            ad_storage: normalizeConsentValue(consent.ad_storage, DEFAULT_CONSENT.ad_storage),
+            analytics_storage: normalizeConsentValue(consent.analytics_storage, DEFAULT_CONSENT.analytics_storage),
+            ad_user_data: normalizeConsentValue(consent.ad_user_data, DEFAULT_CONSENT.ad_user_data),
+            ad_personalization: normalizeConsentValue(consent.ad_personalization, DEFAULT_CONSENT.ad_personalization),
+            personalization_storage: normalizeConsentValue(consent.personalization_storage, DEFAULT_CONSENT.personalization_storage),
+            functionality_storage: normalizeConsentValue(consent.functionality_storage, DEFAULT_CONSENT.functionality_storage),
+            security_storage: normalizeConsentValue(consent.security_storage, DEFAULT_CONSENT.security_storage)
+          };
+        }
+
+        function loadStoredConsent() {
+          try {
+            var stored = window.localStorage.getItem(CONSENT_STORAGE_KEY);
+            if (!stored) return null;
+            return normalizeConsent(JSON.parse(stored));
+          } catch (error) {
+            console.warn("[ANM Consent] Unable to read stored consent.", error);
+            return null;
+          }
+        }
+
+        function saveConsent(consent) {
+          try {
+            window.localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consent));
+          } catch (error) {
+            console.warn("[ANM Consent] Unable to save consent.", error);
+          }
+        }
+
+        var storedConsent = loadStoredConsent();
+        var initialConsent = storedConsent || DEFAULT_CONSENT;
+
+        window.gtag("consent", "default", initialConsent);
+        window.gtag("set", "ads_data_redaction", true);
+        window.gtag("set", "url_passthrough", true);
+
+        window.updateGoogleConsent = function (consent) {
+          var normalized = normalizeConsent(consent);
+          window.gtag("consent", "update", normalized);
+          saveConsent(normalized);
+
+          window.dataLayer.push({
+            event: "consent_update",
+            consent_analytics_storage: normalized.analytics_storage,
+            consent_ad_storage: normalized.ad_storage,
+            consent_ad_user_data: normalized.ad_user_data,
+            consent_ad_personalization: normalized.ad_personalization,
+            consent_personalization_storage: normalized.personalization_storage
+          });
+
+          console.info("[ANM Consent] Consent updated.");
+          return normalized;
+        };
+
+        window.acceptAllGoogleConsent = function () {
+          return window.updateGoogleConsent({
+            ad_storage: "granted",
+            analytics_storage: "granted",
+            ad_user_data: "granted",
+            ad_personalization: "granted",
+            personalization_storage: "granted",
+            functionality_storage: "granted",
+            security_storage: "granted"
+          });
+        };
+
+        window.rejectOptionalGoogleConsent = function () {
+          return window.updateGoogleConsent({
+            ad_storage: "denied",
+            analytics_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            personalization_storage: "denied",
+            functionality_storage: "granted",
+            security_storage: "granted"
+          });
+        };
+
+        window.resetGoogleConsent = function () {
+          try {
+            window.localStorage.removeItem(CONSENT_STORAGE_KEY);
+          } catch (error) {
+            console.warn("[ANM Consent] Unable to clear stored consent.", error);
+          }
+
+          window.gtag("consent", "update", DEFAULT_CONSENT);
+          window.dataLayer.push({ event: "consent_reset" });
+        };
+
+        console.info("[ANM Consent] Consent Mode v2 initialized.");
+      })();
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l !== "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-T346BN49");
+    </script>
+    <!-- End Google Tag Manager -->
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-T346BN49"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"
+      ></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

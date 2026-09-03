@@ -239,3 +239,15 @@ body{background:linear-gradient(160deg,#010208 0%,#020615 52%,#080106 100%)}
 .core{background:linear-gradient(145deg,#061647,#1c000d)}
 .p1:before,.p3:before{background:rgba(96,0,32,.46)}
 .cta{background:linear-gradient(145deg,#020d2e 0%,#00194f 52%,#2c0013 100%)}
+
+/* Public standards summary: detailed internal procedures remain private. */
+.public-standard{max-width:960px;margin:0 auto;padding:clamp(30px,5vw,64px);border:1px solid var(--line-strong);background:linear-gradient(145deg,rgba(17,23,58,.86),rgba(7,4,20,.94));box-shadow:inset 0 1px rgba(255,248,231,.08),0 30px 80px rgba(0,0,0,.34)}
+.public-standard-head{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.public-standard-head>span{color:var(--muted-2);font-size:9px;letter-spacing:.14em}
+.public-standard h2{font-size:clamp(34px,4.8vw,62px);line-height:1.05;letter-spacing:-.05em;margin:44px 0 26px;max-width:780px}
+.public-standard>p{color:var(--muted);font-size:clamp(15px,1.5vw,18px);max-width:790px}
+.public-standard-scope{display:grid;grid-template-columns:repeat(4,1fr);margin-top:42px;border:1px solid var(--line)}
+.public-standard-scope span{padding:15px 12px;text-align:center;border-right:1px solid var(--line);color:#c8d7e9;font-size:9px;text-transform:uppercase;letter-spacing:.08em}
+.public-standard-scope span:last-child{border-right:0}
+@media(max-width:760px){.public-standard-head{align-items:flex-start;flex-direction:column}.public-standard-scope{grid-template-columns:1fr 1fr}.public-standard-scope span:nth-child(2){border-right:0}.public-standard-scope span{border-bottom:1px solid var(--line)}.public-standard-scope span:nth-child(n+3){border-bottom:0}}
+@media(max-width:480px){.public-standard-scope{grid-template-columns:1fr}.public-standard-scope span{border-right:0!important;border-bottom:1px solid var(--line)!important}.public-standard-scope span:last-child{border-bottom:0!important}}

@@ -1,46 +1,79 @@
-import {useState} from "react";
-import {Link,NavLink,Route,Routes} from "./router";
+import React from "react";
+import { Route, Routes } from "./router";
+import { LanguageProvider } from "./context/LanguageContext";
+import { AuthProvider } from "./context/AuthContext";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { CookieBanner } from "./components/CookieBanner";
 
-const services=[
-  {num:"01",name:"Software & SaaS Products",text:"Designing, building and operating useful software products from concept to launch.",detail:"Product strategy · UX systems · Engineering"},
-  {num:"02",name:"AI Agents & Automation",text:"Creating AI-assisted workflows, agents and automation for focused business tasks.",detail:"Applied AI · Workflow design · Oversight"},
-  {num:"03",name:"Web Applications",text:"Secure, responsive platforms, dashboards and internal operational systems.",detail:"Platforms · Dashboards · Operations"},
-  {num:"04",name:"Mobile Applications",text:"Android and cross-platform products designed for everyday use and distribution.",detail:"Mobile UX · Android · Distribution"},
-  {num:"05",name:"Websites & Digital Experiences",text:"High-performance websites that explain products clearly and support growth.",detail:"Brand systems · Web design · Growth"},
-  {num:"06",name:"Cloud & Integrations",text:"Firebase, APIs, authentication, data workflows and connected digital infrastructure.",detail:"Cloud · APIs · Secure integration"},
-];
-const products=[
-  {name:"Orion HQ",url:"https://orionhq.space",type:"Operations platform",code:"OH",text:"A digital control environment for organising applications, workflows and operational activity."},
-  {name:"Mini Post App",url:"https://minipostapp.space",type:"AI content product",code:"MP",text:"A structured workspace for planning and creating story-led social media content."},
-  {name:"TextSpeeder",url:"https://textspeeder.online",type:"Productivity software",code:"TS",text:"A digital writing and text-productivity product focused on faster, clearer workflows."},
-  {name:"AccountPilot",url:"https://accountpilot.space",type:"Privacy-focused software",code:"AP",text:"A product for discovering and organising online accounts connected to authorised email addresses."},
-  {name:"Caelum HQ",url:"https://caelumhq.space",type:"Digital platform",code:"CH",text:"An ANM Digital product brand currently in active development."},
-  {name:"Roman Times",url:"https://romantimes.online",type:"Digital publishing",code:"RT",text:"An online publishing brand for history-led digital content."},
-  {name:"PhotoBeauty",url:"",type:"Mobile application",code:"PB",text:"A mobile photo-enhancement product designed for simple, accessible image improvement."},
-  {name:"99 Names of Allah",url:"",type:"Mobile application",code:"99",text:"A mobile reference experience centred on the 99 Names of Allah."},
-];
+import { HomePage } from "./pages/Home";
+import { AboutPage } from "./pages/About";
+import { ProductsPage } from "./pages/Products";
+import { ProductDetailPage } from "./pages/ProductDetail";
+import { ServicesPage } from "./pages/Services";
+import { ServiceDetailPage } from "./pages/ServiceDetail";
+import { EcosystemPage } from "./pages/Ecosystem";
+import { StandardsPage } from "./pages/Standards";
+import { BlogPage } from "./pages/Blog";
+import { BlogPostPage } from "./pages/BlogPost";
+import { IndustryNewsPage } from "./pages/IndustryNews";
+import { MemberLoginPage } from "./pages/Members/Login";
+import { MemberRegisterPage } from "./pages/Members/Register";
+import { MemberForgotPasswordPage } from "./pages/Members/ForgotPassword";
+import { MemberDashboardPage } from "./pages/Members/Dashboard";
+import { ContactPage } from "./pages/Contact";
+import { PrivacyPolicyPage } from "./pages/Legal/PrivacyPolicy";
+import { TermsOfUsePage } from "./pages/Legal/TermsOfUse";
+import { CookiePolicyPage } from "./pages/Legal/CookiePolicy";
+import { AccessibilityStatementPage } from "./pages/Legal/AccessibilityStatement";
+import { LegalNoticePage } from "./pages/Legal/LegalNotice";
+import { DataDeletionPage } from "./pages/Legal/DataDeletion";
+import { NotFoundPage } from "./pages/NotFound";
 
-function Mark(){return <span className="mark" aria-hidden="true"><i></i><b>ANM</b></span>}
-function Header(){const [open,setOpen]=useState(false);return <header className="nav"><Link className="brand" to="/"><Mark/><span><b>ANM Digital</b><small>Product systems studio</small></span></Link><button className="menu" aria-label="Toggle navigation" aria-controls="primary-navigation" aria-expanded={open} onClick={()=>setOpen(!open)}><i></i><i></i></button><nav id="primary-navigation" className={open?"open":""} aria-label="Main navigation"><NavLink onClick={()=>setOpen(false)} to="/services">Capabilities</NavLink><NavLink onClick={()=>setOpen(false)} to="/products">Products</NavLink><NavLink onClick={()=>setOpen(false)} to="/about">Company</NavLink><NavLink onClick={()=>setOpen(false)} to="/standards">Standards</NavLink><NavLink onClick={()=>setOpen(false)} to="/contact">Contact</NavLink><Link className="button mobile-cta" to="/contact">Build with us <span>↗</span></Link></nav><Link className="button small desktop-cta" to="/contact">Build with us <span>↗</span></Link></header>}
-function Footer(){return <footer><div className="footer-main"><div className="footer-intro"><Link className="brand" to="/"><Mark/><span><b>ANM Digital</b><small>Product systems studio</small></span></Link><p>We design and operate digital products, software and AI systems with commercial purpose.</p><span className="status"><i></i> Building the next generation</span></div><div className="footer-group"><b>Explore</b><Link to="/products">Products</Link><Link to="/services">Capabilities</Link><Link to="/about">Company</Link><Link to="/standards">Creation standards</Link></div><div className="footer-group"><b>Legal</b><Link to="/privacy">Privacy policy</Link><Link to="/terms">Terms of use</Link><a href="https://github.com/ANM-Digital" target="_blank" rel="noreferrer">GitHub ↗</a></div><div className="footer-group"><b>Connect</b><a href="mailto:info@anmdigital.online">info@anmdigital.online</a><span>London, UK</span><a href="https://yogaproductstop.com" target="_blank" rel="noreferrer">Yoga Products Top ↗</a><a href="https://anmconsultancy.com" target="_blank" rel="noreferrer">A&amp;M Consultancy ↗</a></div></div><div className="footer-base"><small>© 2026 ANM Digital. All rights reserved.</small><small>Built with precision in the United Kingdom.</small></div></footer>}
-function Shell({children}:{children:React.ReactNode}){return <><a className="skip-link" href="#main-content">Skip to content</a><Header/><main id="main-content">{children}</main><Footer/></>}
-function Tag({children}:{children:React.ReactNode}){return <p className="tag"><i></i>{children}</p>}
-function Hero({tag,title,copy}:{tag:string,title:string,copy:string}){return <section className="pagehero"><div className="pagehero-glow"></div><Tag>{tag}</Tag><h1>{title}</h1><p className="lead">{copy}</p><div className="page-index"><span>ANM / 2026</span><i></i><span>Digital product systems</span></div></section>}
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AuthProvider>
+        <div className="site-layout">
+          <a className="skip-link" href="#main-content">
+            Skip to main content
+          </a>
 
-function SystemVisual(){return <div className="system-visual" role="img" aria-label="ANM Digital product system: strategy, engineering and AI systems moving from idea to production"><div className="orbital o1"></div><div className="orbital o2"></div><div className="core"><span>ANM</span><b>DIGITAL</b><small>SYSTEM / ACTIVE</small></div><div className="node n1"><i></i><span>PRODUCT</span><b>Strategy</b></div><div className="node n2"><i></i><span>ENGINEERING</span><b>Build</b></div><div className="node n3"><i></i><span>INTELLIGENCE</span><b>AI systems</b></div><div className="metric"><small>DELIVERY SYSTEM</small><b>Idea → Production</b><span><i></i> Operational</span></div></div>}
-function ServiceCard({s}:{s:typeof services[number]}){return <article className="service-card"><div className="card-top"><span>{s.num}</span><i>↗</i></div><div className="service-icon"><i></i><i></i><i></i></div><h3>{s.name}</h3><p>{s.text}</p><small>{s.detail}</small></article>}
-function ProductCard({product:p,index}:{product:typeof products[number],index:number}){const body=<article className={`product p${index%4}`}><div className="product-top"><span className="product-code">{p.code}</span><span className="live"><i></i>{p.url?"Live product":"Mobile product"}</span></div><div className="product-copy"><p className="eyebrow">{p.type}</p><h3>{p.name}</h3><p>{p.text}</p><b>{p.url?"Explore product ↗":"Mobile application"}</b></div></article>;return p.url?<a href={p.url} target="_blank" rel="noreferrer" className="product-link">{body}</a>:<div className="product-link">{body}</div>}
+          <Header />
 
-function Home(){return <Shell><section className="hero"><div className="hero-copy"><Tag>Independent digital product company</Tag><h1>Ideas engineered into <em>working products.</em></h1><p className="lead">ANM Digital creates purposeful software, SaaS platforms, mobile applications and applied AI systems—from first concept to reliable production.</p><div className="actions"><Link className="button" to="/products">Explore our products <span>↗</span></Link><Link className="ghost-button" to="/about">Discover ANM <span>→</span></Link></div><div className="hero-note"><i></i><p><b>Built for real use.</b><br/>Strategy, design and engineering in one focused studio.</p></div></div><SystemVisual/></section><section className="proof"><span>01 / Product strategy</span><span>02 / Applied AI</span><span>03 / Mobile & web</span><span>04 / Cloud systems</span></section><section className="section services-section"><div className="section-intro"><div><Tag>Integrated capability</Tag><h2>One studio. Every layer of a digital product.</h2></div><p>We combine commercial thinking, thoughtful design and dependable engineering to take ambitious digital ideas from definition to daily use.</p></div><div className="services-grid">{services.map(s=><ServiceCard key={s.name} s={s}/>)}</div><Link className="section-link" to="/services">Explore all capabilities <span>↗</span></Link></section><section className="section portfolio-section"><div className="portfolio-aura"></div><div className="section-intro"><div><Tag>Selected portfolio</Tag><h2>Independent brands.<br/>Purpose-built products.</h2></div><p>Our portfolio spans operations, content, productivity, privacy and publishing—each product built around a distinct user need.</p></div><div className="productgrid">{products.slice(0,4).map((p,i)=><ProductCard key={p.name} product={p} index={i}/>)}</div><Link className="section-link light-link" to="/products">View the full product portfolio <span>↗</span></Link></section><section className="section method"><div className="section-intro"><div><Tag>How we build</Tag><h2>Structure before scale.</h2></div><p>Every engagement follows a disciplined path, balancing speed with the standards required for a lasting product.</p></div><div className="method-track">{[["01","Define","Clarify the problem, audience and commercial purpose."],["02","Design","Shape the experience, system and visual language."],["03","Engineer","Build secure, maintainable product foundations."],["04","Validate","Test quality, accessibility and real-world behaviour."],["05","Operate","Launch, observe and continuously improve."]].map(([n,t,d])=><article key={n}><span>{n}</span><i></i><h3>{t}</h3><p>{d}</p></article>)}</div></section><section className="companystrip"><div><Tag>Company structure</Tag><h2>Digital ambition with commercial foundations.</h2></div><div><p>ANM Digital is the digital product division operated by Yoga Products Ltd. It is distinct from A&amp;M Consultancy and focused entirely on creating, developing and operating software and digital assets.</p><Link className="inline-link" to="/about">Understand our company <span>↗</span></Link></div></section><section className="cta"><div className="cta-glow"></div><Tag>Build something useful</Tag><h2>Turn your next idea into a product people can use.</h2><p>Bring us the opportunity. We’ll help define the system around it.</p><Link className="button white" to="/contact">Start a conversation <span>↗</span></Link></section></Shell>}
+          <main id="main-content" className="site-main" tabIndex={-1}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/products/:id" element={<ProductDetailPage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/services/:id" element={<ServiceDetailPage />} />
+              <Route path="/ecosystem" element={<EcosystemPage />} />
+              <Route path="/standards" element={<StandardsPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="/industry-news" element={<IndustryNewsPage />} />
+              <Route path="/members" element={<MemberLoginPage />} />
+              <Route path="/members/login" element={<MemberLoginPage />} />
+              <Route path="/members/register" element={<MemberRegisterPage />} />
+              <Route path="/members/forgot-password" element={<MemberForgotPasswordPage />} />
+              <Route path="/members/dashboard" element={<MemberDashboardPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy" element={<PrivacyPolicyPage />} />
+              <Route path="/terms" element={<TermsOfUsePage />} />
+              <Route path="/cookies" element={<CookiePolicyPage />} />
+              <Route path="/accessibility" element={<AccessibilityStatementPage />} />
+              <Route path="/legal-notice" element={<LegalNoticePage />} />
+              <Route path="/data-deletion" element={<DataDeletionPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </main>
 
-function Services(){return <Shell><Hero tag="Capabilities" title="Every discipline required to build and operate digital products." copy="We unite product thinking, design, engineering, applied AI and cloud infrastructure in one practical delivery capability."/><section className="section"><div className="services-grid">{services.map(s=><ServiceCard key={s.name} s={s}/>)}</div></section><section className="cta compact"><Tag>One connected capability</Tag><h2>Bring the challenge. We’ll shape the system.</h2><Link className="button white" to="/contact">Discuss a project <span>↗</span></Link></section></Shell>}
-function Products(){return <Shell><Hero tag="Our products" title="A growing portfolio of focused digital brands." copy="ANM Digital develops and operates products across productivity, operations, content, privacy, publishing and mobile experiences."/><section className="section"><div className="productgrid all">{products.map((p,i)=><ProductCard key={p.name} product={p} index={i}/>)}</div></section></Shell>}
-function About(){return <Shell><Hero tag="The company" title="A digital product business built to create." copy="ANM Digital exists to develop useful digital assets—not only to advise other businesses about them."/><section className="section about-grid"><div><Tag>Our purpose</Tag><h2>From commercial insight to digital execution.</h2><p className="large-copy">We build products where useful technology, clear design and genuine user needs meet.</p></div><div className="structure-panel"><div className="structure-row"><span>Operating company</span><b>Yoga Products Ltd</b></div><div className="structure-line"></div><div className="structure-columns"><div><span>Business services</span><b>A&amp;M Consultancy</b><p>Consultancy, sourcing, market knowledge and business support.</p></div><div className="active"><span>Digital products</span><b>ANM Digital</b><p>Software, SaaS, AI, websites, mobile applications and owned brands.</p></div></div></div></section><section className="section standards"><div className="section-intro"><div><Tag>Built with discipline</Tag><h2>Standards are part of the product.</h2></div><p>We apply structured quality, design, accessibility, AI governance and engineering principles throughout product creation.</p></div><div className="standards-grid">{["Product quality","AI governance","Visual hierarchy","Accessibility","Security thinking","Responsible delivery"].map((x,i)=><div key={x}><span>0{i+1}</span><b>{x}</b></div>)}</div></section></Shell>}
-function Standards(){return <Shell><Hero tag="Creation standards" title="Google Play-ready Android development standards." copy="Every ANM Digital Labs Android application is developed under a controlled quality framework aligned with current Google Play and Android guidance."/><section className="section standards-page"><article className="public-standard"><div className="public-standard-head"><Tag>Public overview</Tag><span>ANM / ANDROID / QUALITY</span></div><h2>Quality engineered into every release.</h2><p>Our internal framework covers Google Play compliance, release optimisation, responsible memory use, bitmap lifecycle management, performance profiling, application stability, secure credential restoration and verified production delivery.</p><p>Standards are reviewed as Android, Google Play, security and accessibility requirements evolve. Implementation controls, engineering procedures, thresholds, prompts and release checklists remain confidential to protect our proprietary development process.</p><div className="public-standard-scope"><span>Performance</span><span>Security</span><span>Accessibility</span><span>Release assurance</span></div></article><div className="standards-note"><Tag>Protected framework</Tag><p>© ANM Digital Labs. Internal implementation standards, procedures and engineering checklists are proprietary and confidential. Unauthorised copying, reproduction, adaptation or redistribution is prohibited. References to external guidance do not imply certification, accreditation or third-party endorsement.</p></div></section></Shell>}
-
-function Contact(){return <Shell><Hero tag="Contact" title="Tell us what you want to create." copy="For product partnerships, technical collaboration and business enquiries, contact ANM Digital through the official channel below."/><section className="section contact-grid"><div><Tag>Business enquiries</Tag><h2>Start with the opportunity.</h2><p className="large-copy">Share the problem, intended users and the outcome you want to create. ANM Digital is operated by Yoga Products Ltd.</p><div className="contact-details"><p><span>Email</span><a href="mailto:info@anmdigital.online">info@anmdigital.online</a></p><p><span>Location</span><b>London, UK</b></p></div><div className="actions"><a className="button" href="mailto:info@anmdigital.online">Email ANM Digital <span>↗</span></a><a className="ghost-button" href="https://github.com/ANM-Digital" target="_blank" rel="noreferrer">GitHub <span>↗</span></a></div></div><div className="contact-panel"><span className="panel-label">A useful first message includes</span>{["The problem or opportunity","The intended users","The desired digital product","Your target timeline","Existing systems or constraints"].map((x,i)=><div className="contact-row" key={x}><span>0{i+1}</span><b>{x}</b></div>)}</div></section></Shell>}
-function Privacy(){return <Shell><Hero tag="Legal" title="Privacy Policy" copy="How ANM Digital handles information across this website and its digital products."/><Legal><p className="legal-date">Last updated: 24 August 2026</p><h2>Who we are</h2><p>ANM Digital is a digital product brand operated by Yoga Products Ltd. Individual ANM Digital products may publish additional product-specific privacy notices.</p><h2>Information we collect</h2><p>This website may collect information you voluntarily submit, basic technical logs needed for security and reliability, and aggregated analytics where enabled.</p><h2>How information is used</h2><p>Information is used to respond to enquiries, operate and secure our services, understand website performance, comply with legal obligations and improve our products.</p><h2>Advertising and Google services</h2><p>Some ANM Digital websites or applications may use Google services, including Firebase, Google Analytics, AdSense or AdMob. Where applicable, those services may process device, usage or advertising information under their own policies and the consent choices available to users.</p><h2>Your choices</h2><p>You may request access, correction or deletion of personal information, subject to applicable law and legitimate retention requirements.</p><h2>Contact</h2><p>Official privacy contact details will be published on this domain before the public launch.</p></Legal></Shell>}
-function Terms(){return <Shell><Hero tag="Legal" title="Terms of Use" copy="The basic terms governing use of the ANM Digital website."/><Legal><p className="legal-date">Last updated: 24 August 2026</p><h2>Website use</h2><p>You may use this website for lawful informational and business purposes. You must not disrupt, misuse or attempt unauthorised access to the website or related systems.</p><h2>Product information</h2><p>Descriptions of products in development may change. Availability, pricing and product-specific terms are provided separately by each product.</p><h2>Intellectual property</h2><p>Unless otherwise stated, website content, product names, designs and software materials are owned by or licensed to Yoga Products Ltd.</p><h2>External links</h2><p>Links to third-party platforms are provided for convenience. Their services and policies are controlled by their respective operators.</p><h2>Liability</h2><p>This website is provided on an as-available basis. Nothing on it constitutes a guarantee of a particular commercial or technical outcome.</p></Legal></Shell>}
-function Legal({children}:{children:React.ReactNode}){return <section className="legal">{children}</section>}
-function NotFound(){return <Shell><section className="notfound"><Tag>Error / 404</Tag><h1>This page is outside the system.</h1><Link className="button" to="/">Return home <span>↗</span></Link></section></Shell>}
-export default function App(){return <Routes><Route path="/" element={<Home/>}/><Route path="/services" element={<Services/>}/><Route path="/products" element={<Products/>}/><Route path="/about" element={<About/>}/><Route path="/standards" element={<Standards/>}/><Route path="/contact" element={<Contact/>}/><Route path="/privacy" element={<Privacy/>}/><Route path="/terms" element={<Terms/>}/><Route path="*" element={<NotFound/>}/></Routes>}
+          <Footer />
+          <CookieBanner />
+        </div>
+      </AuthProvider>
+    </LanguageProvider>
+  );
+}

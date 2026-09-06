@@ -23,43 +23,17 @@ export function HomePage() {
         description="ANM Digital Labs creates purposeful software, SaaS platforms, mobile applications, and applied AI systems — engineered with commercial precision."
       />
 
-      {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-container">
-          <div className="hero-copy">
-            <div className="tag">
-              <i></i>
-              <span>{t.hero.tag}</span>
-            </div>
-            <h1>
-              {t.hero.headline} <em>{t.hero.headlineEm}</em>
-            </h1>
-            <p className="hero-lead">{t.hero.subheadline}</p>
-
-            <div className="hero-actions">
-              <Link className="button" to="/products">
-                <span>{t.hero.exploreProducts}</span>
-                <ArrowUpRight size={15} />
-              </Link>
-              <Link className="ghost-button" to="/about">
-                <span>{t.hero.discoverAnm}</span>
-                <ArrowRight size={15} />
-              </Link>
-            </div>
-
-            <div className="hero-trust-badge">
-              <div className="trust-indicator-line"></div>
-              <p>
-                <b>Built for dependable production.</b>
-                <span>Strategy, user-first engineering, and verified release compliance.</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="hero-visual-wrap">
-            <SystemVisual />
-          </div>
-        </div>
+      {/* Hero Image */}
+      <section
+        className="hero-image-section"
+        aria-label="ANM Digital Product Systems Studio"
+        style={{ width: "100%", overflow: "hidden", background: "#071034" }}
+      >
+        <img
+          src="/hero-anm.jpg"
+          alt="ANM Digital — Product Systems Studio. Ideas engineered into purposeful software."
+          style={{ display: "block", width: "100%", height: "auto", objectFit: "cover" }}
+        />
       </section>
 
       {/* Proof & Discipline Strip */}
@@ -284,7 +258,6 @@ export function HomePage() {
       <section className="section section-insights">
         <div className="section-container">
           <div className="insights-split">
-            {/* Latest Engineering Blog */}
             <div className="insights-col">
               <div className="insights-header">
                 <div className="tag">
@@ -316,7 +289,6 @@ export function HomePage() {
               </Link>
             </div>
 
-            {/* Latest Industry News */}
             <div className="insights-col">
               <div className="insights-header">
                 <div className="tag">
